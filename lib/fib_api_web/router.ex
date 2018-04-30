@@ -9,7 +9,7 @@ defmodule FibApiWeb.Router do
     pipe_through(:api)
 
     scope "/v1", V1, as: :v1 do
-      resources("/posts", PostController, only: [:index, :show])
+      resources("/posts", PostController, only: [:index, :show, :create])
     end
   end
 end
