@@ -2,6 +2,7 @@ defmodule FibApiWeb.V1.PostController do
   use FibApiWeb, :controller
 
   alias FibApi.Blog
+  alias FibApi.Blog.Post
 
   action_fallback(FibApiWeb.FallbackController)
 
@@ -39,11 +40,11 @@ defmodule FibApiWeb.V1.PostController do
   #   end
   # end
 
-  # def delete(conn, %{"id" => id}) do
-  #   post = Blog.get_post!(id)
+  def delete(conn, %{"id" => id}) do
+    post = Blog.get_post!(id)
 
-  #   with {:ok, %Post{}} <- Blog.delete_post(post) do
-  #     send_resp(conn, :no_content, "")
-  #   end
-  # end
+    with {:ok, %Post{}} <- Blog.delete_post(post) do
+      send_resp(conn, :no_content, "")
+    end
+  end
 end
