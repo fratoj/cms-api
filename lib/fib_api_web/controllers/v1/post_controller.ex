@@ -2,8 +2,6 @@ defmodule FibApiWeb.V1.PostController do
   use FibApiWeb, :controller
 
   alias FibApi.Blog
-  alias FibApi.Repo
-  alias FibApi.Blog.Post
 
   action_fallback(FibApiWeb.FallbackController)
 
@@ -14,28 +12,19 @@ defmodule FibApiWeb.V1.PostController do
 
   def create(conn, %{"data" => data}) do
     attrs = JaSerializer.Params.to_attributes(data)
-    changeset = Post.changeset(%Post{}, attrs)
 
-    case Repo.insert(changeset) do
-      {:ok, article} ->
+    case Blog.create_post(attrs) do
+      {:ok, post} ->
         conn
         |> put_status(201)
-        |> render("show.json-api", data: article)
+        |> render("show.json-api", data: post)
 
-      {:error, changeset} ->
+      {:error, attrs} ->
         conn
         |> put_status(422)
-        |> render(:errors, data: changeset)
+        |> render(:errors, data: attrs)
     end
   end
-
-  # def create(conn, %{"post" => post_params}) do
-  #   with {:ok, %Post{} = post} <- Blog.create_post(post_params) do
-  #     conn
-  #     |> put_status(:created)
-  #     |> render("show.json", post: post)
-  #   end
-  # end
 
   def show(conn, %{"id" => id}) do
     post = Blog.get_post!(id)
