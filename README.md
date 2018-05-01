@@ -18,3 +18,4 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
   * Mailing list: http://groups.google.com/group/phoenix-talk
   * Source: https://github.com/phoenixframework/phoenix
   * Tutorial: https://hbrysiewicz.com/2017-09-21-phoenix-api-starter.html
+  * Using: https://github.com/vt-elixir/ja_serializer
