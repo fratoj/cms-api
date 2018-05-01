@@ -12,5 +12,5 @@
 alias FibApi.Repo
 alias FibApi.Blog.Post
 
-Repo.insert!(%Post{title: "Getting started with Phoenix and JSON API", is_published: true})
-Repo.insert!(%Post{title: "Next steps with Phoenix and JSON API", is_published: false})
+Repo.insert!(%Post{title: "Getting started with Phoenix and JSON API", published: true})
+Repo.insert!(%Post{title: "Next steps with Phoenix and JSON API", published: false})

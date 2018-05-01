@@ -2,10 +2,9 @@ defmodule FibApi.Blog.Post do
   use Ecto.Schema
   import Ecto.Changeset
 
-
   schema "posts" do
-    field :is_published, :boolean, default: false
-    field :title, :string
+    field(:published, :boolean, default: false)
+    field(:title, :string)
 
     timestamps()
   end
@@ -13,7 +12,7 @@ defmodule FibApi.Blog.Post do
   @doc false
   def changeset(post, attrs) do
     post
-    |> cast(attrs, [:title, :is_published])
-    |> validate_required([:title, :is_published])
+    |> cast(attrs, [:title, :published])
+    |> validate_required([:title, :published])
   end
 end
